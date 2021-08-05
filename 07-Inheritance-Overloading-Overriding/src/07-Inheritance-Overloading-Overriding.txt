@@ -1,0 +1,14 @@
+**7일차 주요목차**
+ - Array
+ - Overriding
+ - Inheritance
+ 	is a relationship
+ 	extends
+ 	overriding
+ 	super
+ - Polymorphism
+ 
+ ----------------------------------
+ 
+ - Array 배열: 다수의 데이터를 효과적으로 관리하기 위한 객체
+ 	참조형 데이터를 저장하는 배열
