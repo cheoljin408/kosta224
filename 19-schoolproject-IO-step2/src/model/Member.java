@@ -1,6 +1,9 @@
 package model;
 
-public abstract class Member {
+import java.io.Serializable;
+
+public abstract class Member implements Serializable {
+	private static final long serialVersionUID = -1686128413695892631L;
 	private String tel;
 	private String name;
 	private String address;

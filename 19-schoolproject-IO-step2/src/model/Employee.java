@@ -1,6 +1,10 @@
 package model;
 
 public class Employee extends Member {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1779565908167142891L;
 	private String department;
 
 	public Employee(String tel, String name, String address, String department) {

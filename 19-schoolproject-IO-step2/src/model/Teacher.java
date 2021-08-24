@@ -1,6 +1,10 @@
 package model;
 
 public class Teacher extends Member {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6306489224227121545L;
 	private String subject;
 
 	public Teacher(String tel, String name, String address, String subject) {
