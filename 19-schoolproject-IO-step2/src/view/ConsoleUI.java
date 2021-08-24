@@ -1,5 +1,7 @@
 package view;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 import model.DuplicateTelException;
@@ -15,11 +17,11 @@ public class ConsoleUI {
 	private SchoolService service = new SchoolService();
 	private Scanner scanner = new Scanner(System.in);
 	
-	public void execute() {
-		String option;
+	public void execute() throws FileNotFoundException, ClassNotFoundException, IOException {
+		service.loadData();
 		
 		System.out.println("*******학사관리프로그램을 시작합니다******");
-		
+		String option;
 		exit:
 		while(true) {
 			System.out.println("1. 추가 2. 삭제 3. 검색 4. 전체회원보기 5.종료");
@@ -40,6 +42,7 @@ public class ConsoleUI {
 				service.printAll();
 				break;
 			case "5":
+				service.saveData();
 				System.out.println("*******학사관리프로그램을 종료합니다******");
 				break exit;
 			default :
@@ -50,11 +53,31 @@ public class ConsoleUI {
 	}
 
 	public void addView() {
-		System.out.println("입력할 구성원의 종류를 선택하세요 1.학생  2.선생님 3.직원");
-		String menu = scanner.nextLine();
+		// 1번 추가 구현사항
+		String menu = null;
+		while(true) {
+			System.out.println("입력할 구성원의 종류를 선택하세요 1.학생  2.선생님 3.직원");
+			menu = scanner.nextLine();
+			if(menu.equals("1") || menu.equals("2") || menu.equals("3")) {
+				break;
+			}
+			else {
+				System.out.println("1. 학생, 2. 선생님, 3. 직원 중 하나의 메뉴를 선택하세요!");
+			}
+		}
 		
-		System.out.println("1. 전화번호를 입력하세요!");
-		String tel = scanner.nextLine();
+		String tel = null;
+		while(true) {
+			System.out.println("1. 전화번호를 입력하세요!");
+			tel = scanner.nextLine();
+			// SchoolService의 findMemberByTel(tel)을 이용해본다
+			try {
+				service.findMemberByTel(tel);
+				System.out.println("입력하신 " + tel + " tel 번호는 중복됩니다. 다시 입력하세요!");
+			} catch (MemberNotFoundException e) {
+				break;
+			}
+		}
 		
 		System.out.println("2. 이름을 입력하세요!");
 		String name = scanner.nextLine();
