@@ -35,7 +35,7 @@ public class EchoClient {
 				System.out.print("서버에 보낼 메세지:");
 				String message = scanner.nextLine(); // 사용자로부터 콘솔에서 메세지를 입력받는다
 				out.println(message); // 서버로 메세지를 보낸다
-				if(message.equals("exit")) {
+				if(message.equalsIgnoreCase("exit")) {
 					System.out.println("**EchoClient 종료합니다**");
 					break;
 				}
