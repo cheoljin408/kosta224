@@ -7,6 +7,8 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class ChatServer {
 	/*
@@ -19,7 +21,9 @@ public class ChatServer {
 	 *  start() 
 	 */
 	// client와 통신을 하는 객체(ServerWorker>socket)의 리스트를 관리  
-	private ArrayList<ServerWorker> list=new ArrayList<ServerWorker>();
+	// 다수의 ServerWorker Thread에 의해 공유되어 사용되는 리스트이므로 thread-safe 하게 처리해본다(동기화 처리)
+	// private ArrayList<ServerWorker> list=new ArrayList<ServerWorker>();
+	private List<ServerWorker> list = Collections.synchronizedList(new ArrayList<ServerWorker>());
 	
 	public void go() throws IOException {
 		ServerSocket serverSocket = null;
